@@ -13,6 +13,7 @@ public class MapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Completed levels: " + UserOptions.Instance.CompletedButtonsNumber.Value);
         SetButtonsActive(UserOptions.Instance.CompletedButtonsNumber.Value);
         //HighlightButtonAsNew(UserOptions.Instance.CompletedButtonsNumber.Value);
     }

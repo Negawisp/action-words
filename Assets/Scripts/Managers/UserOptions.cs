@@ -151,6 +151,7 @@ public class UserOptions : MonoBehaviour
 
     private void Load()
     {
+        Debug.Log("Loading...");
         UserLanguage = GetUserLanguage();
         string wordbookAssetPath = WordbookAssetPath.Get(UserLanguage).Path;
         TextAsset textAsset = Resources.Load<TextAsset>(wordbookAssetPath);
@@ -175,11 +176,11 @@ public class UserOptions : MonoBehaviour
         CompletedButtonsNumber = new IntPlayerPref("CompletedLevelsNumber");
 
         //ToDo: This is the place with hardcoded player prefs
-        AppWasNeverLaunched.Value = 0;
+        //AppWasNeverLaunched.Value = 0;
         if (AppWasNeverLaunched.Value >= 0)
         {
             PlayerPrefs.DeleteAll();
-            SetInitialPlayerPrefs();
+            SetInitialPlayerPrefs(completedLevels:0);
         }
         //SetDebugPlayerPrefs();
         //end ToDo
@@ -188,13 +189,13 @@ public class UserOptions : MonoBehaviour
         
     }
 
-    private void SetInitialPlayerPrefs()
+    private void SetInitialPlayerPrefs(int completedLevels)
     {
         OpenRandomLetterTipIsUnlocked.Value = -1;
         OpenRandomWordTipIsUnlocked.Value = -1;
         OpenChosenCellTipIsUnlocked.Value = -1;
 
-        CompletedButtonsNumber.Value = 22;
+        CompletedButtonsNumber.Value = completedLevels;
         OpenRandomLettersTipsNumber.Value = 5;
         OpenRandomWordTipsNumber.Value = 2;
         OpenChosenLetterTipsNumber.Value = 3;
